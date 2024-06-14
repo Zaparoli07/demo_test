@@ -51,5 +51,7 @@ internal class ProductControllerTest : IntegrationTest() {
                 .content(jacksonObjectMapper().writeValueAsString(cmd))
         )
             .andExpect(status().isConflict)
+            .andExpect(jsonPath("\$.code").value("409"))
+            .andExpect(jsonPath("\$.message").value("Product already exists"))
     }
 }

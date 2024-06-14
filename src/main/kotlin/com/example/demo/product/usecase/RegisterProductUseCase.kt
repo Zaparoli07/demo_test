@@ -1,6 +1,8 @@
 package com.example.demo.product.usecase
 
+import com.example.demo.product.model.Category
 import com.example.demo.product.model.Product
+import com.example.demo.product.usecase.RegisterProductUseCase.RegisterProduct
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 
@@ -19,4 +21,8 @@ interface RegisterProductUseCase {
     )
 
     data class ProductRegistered(val product: Product)
+}
+
+fun RegisterProduct.toCategories(): List<Category> {
+    return this.categories.map { Category(description = it) }
 }

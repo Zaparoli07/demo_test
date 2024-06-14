@@ -8,6 +8,7 @@ import com.example.demo.product.repository.ProductRepository
 import com.example.demo.product.usecase.RegisterProductUseCase
 import com.example.demo.product.usecase.RegisterProductUseCase.ProductRegistered
 import com.example.demo.product.usecase.RegisterProductUseCase.RegisterProduct
+import com.example.demo.product.usecase.toCategories
 import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Service
 
@@ -21,7 +22,7 @@ class RegisterProductService(
             .existsProductConstraint(repository.existsByName(cmd.name))
             .name(cmd.name)
             .description(cmd.description)
-            .categories(cmd.categories.map { Category(description = it) })
+            .categories(cmd.toCategories())
             .build()
 
         return repository.save(product)
