@@ -22,25 +22,8 @@ internal class RegisterProductServiceTest {
     )
 
     @Test
-    fun `should throws ProductExistsException when exists product`() {
-        // Given
-        val cmd = RegisterProduct(
-            name = "XPTO",
-            description = "XPTO",
-            categories = listOf("XPTO")
-        )
-
-        // When
-        `when`(repository.existsByName(cmd.name)).thenReturn(true)
-
-        // Then
-        assertThrows<ProductExistsException> {
-            service.handle(cmd)
-        }
-    }
-
-    @Test
     fun `should save product`() {
+        //Given
         val expect = ProductFixture.get()
 
         val cmd = RegisterProduct(
@@ -49,9 +32,29 @@ internal class RegisterProductServiceTest {
             categories = listOf("XPTO")
         )
 
+        //When
         `when`(repository.existsByName(cmd.name)).thenReturn(false)
         `when`(repository.save(any())).thenReturn(expect)
 
+        //Then
         assertEquals(expect, service.handle(cmd))
+    }
+
+    @Test
+    fun `should throws ProductExistsException when exists product`() {
+        //Given
+        val cmd = RegisterProduct(
+            name = "XPTO",
+            description = "XPTO",
+            categories = listOf("XPTO")
+        )
+
+        //When
+        `when`(repository.existsByName(cmd.name)).thenReturn(true)
+
+        //Then
+        assertThrows<ProductExistsException> {
+            service.handle(cmd)
+        }
     }
 }
