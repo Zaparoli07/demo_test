@@ -1,0 +1,16 @@
+[
+{
+  "name":"com.example.demo.DemoApplication"
+},
+{
+  "name":"com.example.demo.DemoApplication.kt"
+},
+{
+  "name":"java.lang.Runtime",
+  "methods":[{"name":"version","parameterTypes":[] }]
+},
+{
+  "name":"java.lang.Runtime$Version",
+  "methods":[{"name":"major","parameterTypes":[] }]
+}
+]
