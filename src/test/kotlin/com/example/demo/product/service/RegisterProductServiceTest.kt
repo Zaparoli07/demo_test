@@ -6,6 +6,7 @@ import com.example.demo.product.model.Product.ProductExistsException
 import com.example.demo.product.repository.ProductRepository
 import com.example.demo.product.usecase.RegisterProductUseCase.RegisterProduct
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito.any
@@ -22,8 +23,14 @@ internal class RegisterProductServiceTest {
     )
 
     @Test
-    fun `should save product`() {
-        //Given
+    @DisplayName(value = """
+        Cenário: Cadastrar Produto Inexistente
+        DADO que eu deseje cadastrar um produto
+        QUANDO informo os dados de um produto que não está cadastrado
+        ENTÃO deve retornar com sucesso o produto cadastrado
+    """)
+    fun deveSalvarProdutoComSucesso() {
+        // DADO - Dados do Produto
         val expect = ProductFixture.get()
 
         val cmd = RegisterProduct(
@@ -32,27 +39,33 @@ internal class RegisterProductServiceTest {
             categories = listOf("XPTO")
         )
 
-        //When
+        // QUANDO - MOCK do objeto simulado do banco de dados inexistente
         `when`(repository.existsByName(cmd.name)).thenReturn(false)
         `when`(repository.save(any())).thenReturn(expect)
 
-        //Then
+        // ENTÃO - Afirma o objeto de produto foi retornado do método
         assertEquals(expect, service.handle(cmd))
     }
 
     @Test
-    fun `should throws ProductExistsException when exists product`() {
-        //Given
+    @DisplayName(value = """
+        Cenário: Cadastrar Produto Existente
+        DADO que eu deseje cadastrar um produto
+        QUANDO informo os dados de um produto que está cadastrado
+        ENTÃO deve retornar uma exceção de produto já cadastrado
+    """)
+    fun naoDeveSalvarProdutoExistente() {
+        // Dado - Dados do Produto
         val cmd = RegisterProduct(
             name = "XPTO",
             description = "XPTO",
             categories = listOf("XPTO")
         )
 
-        //When
+        // QUANDO - MOCK do objeto simulado do banco de dados existente
         `when`(repository.existsByName(cmd.name)).thenReturn(true)
 
-        //Then
+        // ENTÃO - Afirma que a exceção foi disparada
         assertThrows<ProductExistsException> {
             service.handle(cmd)
         }
