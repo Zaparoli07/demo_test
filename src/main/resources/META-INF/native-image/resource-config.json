@@ -5,34 +5,10 @@
       "pattern":"\\QMETA-INF/MANIFEST.MF\\E"
     }, 
     {
-      "pattern":"\\QMETA-INF/resources/webjars/springfox-swagger-ui/favicon-32x32.png\\E"
-    }, 
-    {
-      "pattern":"\\QMETA-INF/resources/webjars/springfox-swagger-ui/index.html\\E"
-    }, 
-    {
-      "pattern":"\\QMETA-INF/resources/webjars/springfox-swagger-ui/springfox.css\\E"
-    }, 
-    {
-      "pattern":"\\QMETA-INF/resources/webjars/springfox-swagger-ui/springfox.js\\E"
-    }, 
-    {
-      "pattern":"\\QMETA-INF/resources/webjars/springfox-swagger-ui/swagger-ui-bundle.js\\E"
-    }, 
-    {
-      "pattern":"\\QMETA-INF/resources/webjars/springfox-swagger-ui/swagger-ui-standalone-preset.js\\E"
-    }, 
-    {
-      "pattern":"\\QMETA-INF/resources/webjars/springfox-swagger-ui/swagger-ui.css\\E"
-    }, 
-    {
       "pattern":"\\QMETA-INF/services/java.sql.Driver\\E"
     }, 
     {
       "pattern":"\\QMETA-INF/services/javax.el.ExpressionFactory\\E"
-    }, 
-    {
-      "pattern":"\\QMETA-INF/services/javax.persistence.spi.PersistenceProvider\\E"
     }, 
     {
       "pattern":"\\QMETA-INF/services/javax.validation.spi.ValidationProvider\\E"
@@ -854,6 +830,9 @@
       "pattern":"\\Qorg/springframework/transaction/annotation/Transactional.class\\E"
     }, 
     {
+      "pattern":"\\Qorg/springframework/web/bind/annotation/ControllerAdvice.class\\E"
+    }, 
+    {
       "pattern":"\\Qorg/springframework/web/bind/annotation/Mapping.class\\E"
     }, 
     {
@@ -864,6 +843,9 @@
     }, 
     {
       "pattern":"\\Qorg/springframework/web/bind/annotation/RestController.class\\E"
+    }, 
+    {
+      "pattern":"\\Qorg/springframework/web/bind/annotation/RestControllerAdvice.class\\E"
     }, 
     {
       "pattern":"\\Qorg/springframework/web/context/ServletContextAware.class\\E"

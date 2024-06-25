@@ -14,9 +14,11 @@ import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
 
 internal class RegisterProductServiceTest {
+    // Mock do banco de dados ou repositório
     private val repository: ProductRepository = mock(ProductRepository::class.java)
     private val publisher: Publisher = mock(Publisher::class.java)
 
+    // Classe a ser testada com seus MOCKs
     private val service = RegisterProductService(
         repository = repository,
         publisher = publisher
@@ -55,14 +57,14 @@ internal class RegisterProductServiceTest {
         ENTÃO deve retornar uma exceção de produto já cadastrado
     """)
     fun naoDeveSalvarProdutoExistente() {
-        // Dado - Dados do Produto
+        // DADO - Dados do Produto
         val cmd = RegisterProduct(
             name = "XPTO",
             description = "XPTO",
             categories = listOf("XPTO")
         )
 
-        // QUANDO - MOCK do objeto simulado do banco de dados existente
+        // QUANDO - MOCK do objeto simulado existente do banco de dados
         `when`(repository.existsByName(cmd.name)).thenReturn(true)
 
         // ENTÃO - Afirma que a exceção foi disparada

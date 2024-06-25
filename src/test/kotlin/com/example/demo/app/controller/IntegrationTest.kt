@@ -18,21 +18,22 @@ import org.testcontainers.utility.DockerImageName
 abstract class IntegrationTest {
 
     companion object {
+        // Imagem do container do Docker para o banco de dados Postgres
         private val db = PostgreSQLContainer(DockerImageName.parse("postgres:16-alpine"))
 
-        @BeforeAll
+        @BeforeAll // Oque será executado antes dos testes
         @JvmStatic
         fun startDBContainer() {
             db.start()
         }
 
-        @AfterAll
+        @AfterAll // Oque será executado após os testes
         @JvmStatic
         fun stopDBContainer() {
             db.stop()
         }
 
-        @DynamicPropertySource
+        @DynamicPropertySource // Propriedades de ambiente do banco de dados
         @JvmStatic
         fun registerDBContainer(registry: DynamicPropertyRegistry) {
             registry.add("spring.datasource.url", db::getJdbcUrl)
